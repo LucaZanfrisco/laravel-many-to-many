@@ -30,7 +30,8 @@ class StoreProjectRequest extends FormRequest
             'descrizione' => 'string|max:1000|nullable',
             'data_di_creazione' => 'required|date',
             'completato' => 'required|boolean',
-            'riscosso' => 'required|boolean'
+            'riscosso' => 'required|boolean',
+            'technologies' => 'nullable|exists:technologies,id'
         ];
     }
 }

@@ -13,18 +13,34 @@
             @error('nome')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            
+
             {{-- Tipologia --}}
             <div class="my-3">
                 <label for="type_id" class="form-label fs-5 fw-bold">Tipologia</label>
                 <select name="type_id" id="type_id" class="form-select @error('type_id') is-invalid @enderror">
                     <option value="">Selezionare una tipologia</option>
                     @foreach ($types as $type)
-                        <option value="{{ $type->id }}" {{ old('type_id') == $type->id ? 'selected' : '' }}>{{ $type->nome }}</option>
+                        <option value="{{ $type->id }}" {{ old('type_id') == $type->id ? 'selected' : '' }}>
+                            {{ $type->nome }}</option>
                     @endforeach
                 </select>
             </div>
             @error('type_id')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+
+            {{-- Technologie --}}
+            <div class="my-3">
+                <div class="form-label fs-5 fw-bold">Technologie</div>
+                <div>
+                    @foreach ($technologies as $technology)
+                        <label class="form-check-label" for="technologies">{{ $technology->nome }}</label>
+                        <input class="form-check-input me-3 mb-3 @error('technologies') is-invalid @enderror" type="checkbox" name="technologies[]" id="technologies"
+                            value="{{ $technology->id }}">
+                    @endforeach
+                </div>
+            </div>
+            @error('technologies')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 
@@ -82,7 +98,7 @@
             @error('riscosso')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            
+
             {{-- Pulsanti --}}
             <a href="{{ route('admin.project.index') }}" class="btn btn-dark">Cancella</a>
             <button type="submit" class="btn btn-success">Salva</button>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -20,6 +21,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
+        
         return view('admin.project.index', compact('projects'));
     }
 
@@ -31,7 +33,9 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('admin.project.create',compact('types'));
+        $technologies = Technology::all();
+
+        return view('admin.project.create',compact('types','technologies'));
     }
 
     /**
@@ -43,17 +47,16 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         $data = $request->validated();
-        
         $project = new Project();
-        
         if(isset($data['immagine'])){
             $project->immagine = Storage::put('uploads', $data['immagine']);
         }
-        
         $project->fill($data);
         $project->slug = Str::slug($data['nome'], '-');
-
         $project->save();
+        if(isset($data['technologies'])){
+            $project->technologies()->sync($data['technologies']);
+        }
 
         return redirect()->route('admin.project.index')->with('message','Progetto aggiunto con successo');
     }

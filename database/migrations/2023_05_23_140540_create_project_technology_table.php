@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('technology_id')->constrained()->cascadeOnDelete();
 
             $table->primary(['project_id','technology_id']);
+            $table->timestamps();
         });
     }
 
