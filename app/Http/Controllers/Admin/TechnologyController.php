@@ -87,7 +87,7 @@ class TechnologyController extends Controller
         $data = $request->validated();
         $technology->slug = Str::slug($data['nome']);
         $technology->update($data);
-        
+
         return to_route('admin.technologies.index')->with('message', "Tecnologia $technology->id modificata con successo");
     }
 
@@ -99,6 +99,10 @@ class TechnologyController extends Controller
      */
     public function destroy(Technology $technology)
     {
-        //
+        $deletedTechnology = $technology->id;
+
+        $technology->delete();
+
+        return to_route('admin.technologies.index')->with('message', "Tecnologia $deletedTechnology eliminata con successo");
     }
 }
