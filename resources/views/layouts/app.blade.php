@@ -61,6 +61,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" style="{{ Route::current()->getName() === 'admin.types.index' ? 'color: red; text-decoration: underline' : ''}}" href="{{ route('admin.types.index') }}">{{ __('Tipologie') }}</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" style="{{ Route::current()->getName() === 'admin.technologies.index' ? 'color: red; text-decoration: underline' : ''}}" href="{{ route('admin.technologies.index') }}">{{ __('Tecnologie') }}</a>
+                            </li>
                         @endguest
                     </ul>
 

@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container">
-        <h1 class="py-3">Nuova Tipologia</h1>
-        <form action="{{ route('admin.types.store') }}" method="POST" enctype="multipart/form-data" class="mt-3">
+        <h1 class="py-3">Nuova Tecnologia</h1>
+        <form action="{{ route('admin.technologies.store') }}" method="POST" enctype="multipart/form-data" class="mt-3">
             @csrf
             {{-- Nome --}}
             <div class="mb-3">
@@ -16,7 +16,7 @@
             @enderror
             
             {{-- Pulsanti --}}
-            <a href="{{ route('admin.types.index') }}" class="btn btn-dark">Cancella</a>
+            <a href="{{ route('admin.technologies.index') }}" class="btn btn-dark">Cancella</a>
             <button type="submit" class="btn btn-success">Salva</button>
         </form>
     </div>

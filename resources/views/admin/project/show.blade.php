@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="d-flex justify-content-between align-items-center border border-2 mt-3 rounded-4 p-4">
-            <ul class="list-unstyled">
+            <ul class="list-unstyled col-4">
                 {{-- Pulsanti Indietro --}}
                 <li><a href="{{ route('admin.project.index') }}" class="btn btn-sm btn-danger">Indietro</a></li>
 
@@ -21,7 +21,7 @@
 
                 {{-- Tecnologie --}}
                 @if($project->technologies->isNotEmpty())
-                    <li class="fs-4">
+                    <li class="fs-4 my-3">
                         Tecnologie:
                         @foreach ($project->technologies as $technology)
                             <span class="fs-4">{{ $technology->nome }}</span>
@@ -60,7 +60,7 @@
             </ul>
             {{-- Immagine --}}
             @if (isset($project->immagine))
-                <div><img class="img-fluid show-img" src="{{ asset('storage/' . $project->immagine) }}" alt="">
+                <div class="col-8"><img class="img-fluid" src="{{ asset('storage/' . $project->immagine) }}" alt="">
                 </div>
             @endif
         </div>
