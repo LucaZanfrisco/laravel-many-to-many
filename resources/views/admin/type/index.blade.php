@@ -64,7 +64,7 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <div>Eliminare il progetto n°{{$type->id}}: {{ $type->nome }} ?</div>
+                                    <div>Eliminare la tipologia n°{{$type->id}}: {{ $type->nome }} ?</div>
                                 </div>
                                 <div class="modal-footer">
                                     <form action="{{ route('admin.types.destroy', $type) }}" method="POST">

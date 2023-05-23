@@ -64,7 +64,7 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <div>Eliminare il progetto n°{{$technology->id}}: {{ $technology->nome }} ?</div>
+                                    <div>Eliminare la tecnologia n°{{$technology->id}}: {{ $technology->nome }} ?</div>
                                 </div>
                                 <div class="modal-footer">
                                     <form action="{{ route('admin.technologies.destroy', $technology) }}" method="POST">

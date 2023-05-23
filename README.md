@@ -18,4 +18,4 @@ Progetto adibito alla gestione lato BACKEND di un portfolio di progetti
 - [x] creare il seeder per il model Technology.
 
 **Bonus 2:**
-- [] aggiungere le operazioni CRUD per il model Technology, in modo da gestire le tecnologie utilizzate nei progetti direttamente dal pannello di amministrazione.
+- [x] aggiungere le operazioni CRUD per il model Technology, in modo da gestire le tecnologie utilizzate nei progetti direttamente dal pannello di amministrazione.
