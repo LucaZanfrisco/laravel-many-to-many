@@ -70,9 +70,9 @@ class TechnologyController extends Controller
      * @param  \App\Models\Techonology  $techonology
      * @return \Illuminate\Http\Response
      */
-    public function edit(Technology $techonology)
+    public function edit(Technology $technology)
     {
-        //
+        return view('admin.technology.edit',compact('technology'));
     }
 
     /**
@@ -84,7 +84,11 @@ class TechnologyController extends Controller
      */
     public function update(UpdateTechnologyRequest $request, Technology $technology)
     {
-        //
+        $data = $request->validated();
+        $technology->slug = Str::slug($data['nome']);
+        $technology->update($data);
+        
+        return to_route('admin.technologies.index')->with('message', "Tecnologia $technology->id modificata con successo");
     }
 
     /**
