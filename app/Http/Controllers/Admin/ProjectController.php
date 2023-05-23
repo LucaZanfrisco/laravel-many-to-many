@@ -81,7 +81,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
-        return view('admin.project.edit', compact('project','types'));
+        $technologies = Technology::all();
+        return view('admin.project.edit', compact('project','types','technologies'));
     }
 
     /**
@@ -103,6 +104,9 @@ class ProjectController extends Controller
         }
 
         $project->slug = Str::slug($data['nome'], '-');
+
+        $technologies = isset($data['technologies']) ? $data['technologies'] : [];
+        $project->technologies()->sync($technologies);
 
         $project->update($data);
 

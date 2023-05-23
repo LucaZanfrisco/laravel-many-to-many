@@ -33,6 +33,38 @@
             @error('type_id')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
+
+            {{-- Tecnologie --}}
+            @if($errors->any())
+                <div class="my-3">
+                    <div class="form-label fs-5 fw-bold">Technologie</div>
+                    <div>
+                        @foreach ($technologies as $technology)
+                            <label class="form-check-label" for="{{ $technology->nome }}">{{ $technology->nome }}</label>
+                            <input class="form-check-input me-3 mb-3 @error('technologies') is-invalid @enderror"
+                                type="checkbox" name="technologies[]" id="{{ $technology->nome }}" value="{{ $technology->id }}" {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}>
+                        @endforeach
+                    </div>
+                </div>
+                @error('technologies')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            @else
+                <div class="my-3">
+                    <div class="form-label fs-5 fw-bold">Technologie</div>
+                    <div>
+                        @foreach ($technologies as $technology)
+                            <label class="form-check-label" for="{{ $technology->nome }}">{{ $technology->nome }}</label>
+                            <input class="form-check-input me-3 mb-3 @error('technologies') is-invalid @enderror"
+                                type="checkbox" name="technologies[]" id="{{ $technology->nome }}" value="{{ $technology->id }}" {{ $project->technologies->contains($technology->id) ? 'checked' : ''}}>
+                        @endforeach
+                    </div>
+                </div>
+                @error('technologies')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            @endif
+
             {{-- Immagine --}}
             <div class="my-3">
                 <label for="immagine" class="form-label fs-5 fw-bold">Selezione un file immagine da inserire</label>

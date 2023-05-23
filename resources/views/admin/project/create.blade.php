@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container pb-5 pt-3">
+        <h1>Aggiungi Progetto</h1>
         <form action="{{ route('admin.project.store') }}" method="POST" enctype="multipart/form-data" class="mt-3">
             @csrf
             {{-- Nome --}}
@@ -34,9 +35,8 @@
                 <div class="form-label fs-5 fw-bold">Technologie</div>
                 <div>
                     @foreach ($technologies as $technology)
-                        <label class="form-check-label" for="technologies">{{ $technology->nome }}</label>
-                        <input class="form-check-input me-3 mb-3 @error('technologies') is-invalid @enderror" type="checkbox" name="technologies[]" id="technologies"
-                            value="{{ $technology->id }}">
+                        <label class="form-check-label" for="{{ $technology->nome }}">{{ $technology->nome }}</label>
+                        <input class="form-check-input me-3 mb-3 @error('technologies') is-invalid @enderror" type="checkbox" name="technologies[]" id="{{ $technology->nome }}" {{ in_array($technology->id, old('technologies', [])) ? 'checked' : ''}}                             value="{{ $technology->id }}">
                     @endforeach
                 </div>
             </div>
